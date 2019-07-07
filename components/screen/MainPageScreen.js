@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {View,Image,Dimensions, WebView } from "react-native";
-import { Container, Header, Content, Form, Item, Input, Label, Icon,Button, Left, Right, Body, Title, Drawer, Text, List, ListItem } from 'native-base';
+import { Container, Header, Content, Form, Item, Input, Label,Button, Left, Right, Body, Title, Drawer, Text, List, ListItem } from 'native-base';
+import  {Icon as NBIcon} from 'native-base'
+import  Icon from 'react-native-vector-icons/MaterialIcons';
+////
 import styles from '../Styles/MyStyles'
 import SideBar from '../Navigator/MenuSamping'
 import { Col, Row, Grid } from 'react-native-easy-grid';
@@ -13,7 +16,17 @@ export default class MainPageScreen extends Component {
     openDrawer() {
       this.drawer._root.open()
     };
-
+    reload(){
+        this.myWebView.reload()
+      }
+    state = {
+        key: 1
+    };
+    resetWebViewToInitialUrl(){
+    this.setState({
+      key: this.state.key + 1
+    });
+  };
   render() {
 
     return (
@@ -23,23 +36,30 @@ export default class MainPageScreen extends Component {
         onClose={() => this.closeDrawer()}>
 
         <Container style={styles.container}>
-          <Content>
 
+          <View style={{position:'absolute',right:0, top:200,marginTop:0,marginRight:0,zIndex:1,height:50,width:50}}>
+            <Button  transparent style={{flex: 1,height:null, width:null, resizeMode: 'cover'}}
+              onPress={()=>this.resetWebViewToInitialUrl()} title="reload" >
+            <Image source={require('../../assets/images/location.png')}
+            style={{height:40, width:40, backgroundColor:'transparent'}} />
+            </Button>
+          </View>
+          <View style={{position:'absolute',left:0,marginTop:0,marginRight:0,zIndex:1,height:50,width:50}}>
+            <Button  style={styles.BtnMenuMap}  onPress={() => this.openDrawer()}>
+              <NBIcon  name='menu'/>
+            </Button>
+          </View>
             <WebView
-              source={{uri: 'https://www.google.com/maps/d/embed?mid=1qrcRzQicAWR0iNhqoYoqwzLV3Xg'}}
-              style={{ height: 450 }}
-
+              key={ this.state.key }
               source={{uri: 'https://www.google.com/maps/d/embed?mid=1qrcRzQicAWR0iNhqoYoqwzLV3Xg&z=15'}}
-              style={{ height: 300, marginTop: -50, marginLeft: -350 }}/>
-            <View style={{position:'absolute',right:0,marginTop:0,marginRight:0,zIndex:1,height:50,width:50}}>
-              <Button  style={styles.BtnMenuMap}  onPress={() => this.openDrawer()}>
-                <Icon  name='menu'/>
-              </Button>
-            </View>
+              style={{ height: 600, marginTop: -45, marginLeft: -330 }}
+              ref={(ref) => this.myWebView = ref }/>
+
+            <Content>
             <Grid>
             <Row style={{  height: 20 }}>
             </Row>
-  
+
               <Body>
                 <Button light onPress={() => this.props.navigation.navigate('PedirFlete')} >
                   <Text>Donde llevas tu Carga?</Text>
@@ -49,48 +69,48 @@ export default class MainPageScreen extends Component {
             <Col >
               <List>
               <ListItem icon
-              onPress={() => this.props.navigation.navigate('PedirFlete')} >
+                onPress={() => this.props.navigation.navigate('PedirFlete')} >
                     <Left>
                       <Button style={{ backgroundColor: "#2c3e50" }}
                     onPress={() => this.props.navigation.navigate('PedirFlete')} >
-                        <Icon active name="map" />
+                        <NBIcon active name="map" />
                       </Button>
                     </Left>
                     <Body>
                       <Text>Casa</Text>
                     </Body>
                     <Right>
-                      <Icon style={{ color: "#2c3e50" }} active name="arrow-forward" />
+                      <NBIcon style={{ color: "#2c3e50" }} active name="arrow-forward" />
                     </Right>
                 </ListItem>
                 <ListItem icon
-                onPress={() => this.props.navigation.navigate('PedirFlete')} >
+                  onPress={() => this.props.navigation.navigate('PedirFlete')} >
                     <Left>
                       <Button style={{ backgroundColor: "#2c3e50" }}
                       onPress={() => this.props.navigation.navigate('PedirFlete')} >
-                        <Icon active name="map" />
+                        <NBIcon active name="map" />
                       </Button>
                     </Left>
                     <Body>
                       <Text>Trabajo</Text>
                     </Body>
                     <Right>
-                      <Icon style={{ color: "#2c3e50" }} active name="arrow-forward" />
+                      <NBIcon style={{ color: "#2c3e50" }} active name="arrow-forward" />
                     </Right>
                 </ListItem>
                 <ListItem icon
-                onPress={() => this.props.navigation.navigate('PedirFlete')} >
+                  onPress={() => this.props.navigation.navigate('PedirFlete')} >
                     <Left>
                       <Button style={{ backgroundColor: "#2c3e50" }}
                         onPress={() => this.props.navigation.navigate('PedirFlete')} >
-                        <Icon active name="map" />
+                        <NBIcon active name="map" />
                       </Button>
                     </Left>
                     <Body>
                       <Text>Universidad</Text>
                     </Body>
                     <Right>
-                      <Icon style={{ color: "#2c3e50" }} active name="arrow-forward" />
+                      <NBIcon style={{ color: "#2c3e50" }} active name="arrow-forward" />
                     </Right>
                 </ListItem>
                 </List>

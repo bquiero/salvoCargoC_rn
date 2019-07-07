@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Iframe from 'react-iframe';
 import {View,Image,Dimensions, WebView } from "react-native";
 import { Container, Header, Content, Form, Item, Input, Card,Picker, CardItem, Label, Icon,Button, Left, Right, Body, Title, Drawer, Text, List, ListItem } from 'native-base';
 import styles from '../Styles/MyStyles'
@@ -19,13 +18,17 @@ export default class EsperarConductorScreen extends Component {
     // Toggle the state every second
         setTimeout(() => (
           this.props.navigation.navigate('Viaje')
-        ), 15000);
+        ), 20000);
      }
 
     //state object
-    state = { isShowingText: true };
+    state = { isShowingText: true, key: 1 };
 
-
+    resetWebViewToInitialUrl(){
+    this.setState({
+      key: this.state.key + 1
+    });
+  };
   render() {
         return (
       <Drawer
@@ -34,23 +37,29 @@ export default class EsperarConductorScreen extends Component {
         onClose={() => this.closeDrawer()}>
 
         <Container style={styles.container}>
+				<View style={{position:'absolute',left:0,marginTop:0,marginRight:0,zIndex:1,height:50,width:50}}>
+					<Button  style={styles.BtnMenuMap}  onPress={() => this.openDrawer()}>
+						<Icon  name='menu'/>
+					</Button>
+				</View>
+				<WebView
+					key={ this.state.key }
+					source={{uri: 'https://www.google.com/maps/d/embed?mid=1gr_KREspblTsAsBBBSl-K6qjgTsvsQOF&z=17'}}
+					style={{ height: 500, marginTop: -50, marginLeft: -350 }}
+				/>
+				<View style={{position:'absolute',right:0, top:215,marginTop:0,marginRight:0,zIndex:1,height:50,width:50}}>
+					<Button  transparent style={{flex: 1,height:null, width:null, resizeMode: 'cover'}}
+						onPress={()=>this.resetWebViewToInitialUrl()} title="reload" >
+					<Image source={require('../../assets/images/location.png')}
+					style={{height:40, width:40, backgroundColor:'transparent'}} />
+					</Button>
+				</View>
           <Content>
-
-            <WebView
-              source={{uri: 'https://www.google.com/maps/d/embed?mid=1gr_KREspblTsAsBBBSl-K6qjgTsvsQOF&z=17'}}
-              style={{ height: 500, marginTop: -50, marginLeft: -350 }}
-
-            />
-            <View style={{position:'absolute',left:0,marginTop:0,marginRight:0,zIndex:1,height:50,width:50}}>
-              <Button  style={styles.BtnMenuMap}  onPress={() => this.openDrawer()}>
-                <Icon  name='menu'/>
-              </Button>
-            </View>
             <Grid>
             <Row style={{  height: 20 }}>
             </Row>
-          
-          
+
+
           <Row style={styles.containerflex}>
             <Grid style={{width: '20%'}}>
               <Text style={{fontSize: 15, marginLeft: 70}}>Conductor: Brian Jojas</Text>
@@ -72,7 +81,7 @@ export default class EsperarConductorScreen extends Component {
               <Text style={{fontSize: 15, marginRight: 40}}>Vehículo: Mercedes vito</Text>
               <Text style={{fontSize: 15, marginRight: 40}}>Matrícula: XH-66-40</Text>
             </View>
-      
+
           </Row>
           <Text></Text>
           <Row >

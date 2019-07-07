@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Iframe from 'react-iframe';
 import {View,Image,Dimensions, WebView } from "react-native";
 import { Container, Header, Content, Form, Item, Input, Card,Picker, CardItem, Label, Icon,Button, Left, Right, Body, Title, Drawer, Text, List, ListItem } from 'native-base';
 import styles from '../Styles/MyStyles'
@@ -17,7 +16,8 @@ export default class InformacionFleteScreen extends Component {
 	constructor(props) {
 	    super(props);
 	    this.state = {
-	      selected: "key1"
+	      selected: "key1",
+         key: 1 ,
 	    };
     }
     onValueChange(value: string) {
@@ -25,6 +25,13 @@ export default class InformacionFleteScreen extends Component {
 	      selected: value
 	    });
 	  }
+    //state object
+
+    resetWebViewToInitialUrl(){
+    this.setState({
+      key: this.state.key + 1
+    });
+  };
   render() {
 
     return (
@@ -34,17 +41,26 @@ export default class InformacionFleteScreen extends Component {
         onClose={() => this.closeDrawer()}>
 
         <Container style={styles.container}>
+        <View style={{position:'absolute',left:0,marginTop:0,marginRight:0,zIndex:1,height:50,width:50}}>
+          <Button  style={styles.BtnMenuMap}  onPress={() => this.openDrawer()}>
+            <Icon  name='menu'/>
+          </Button>
+        </View>
+        <WebView
+            key={ this.state.key }
+          source={{uri: 'https://www.google.com/maps/d/embed?mid=1i0dWYZjIfyEGt1s0JrMWynfuYKkHOthW&z=15'}}
+          style={{ height: 400, marginTop: -50, marginLeft: -350 }}
+        />
+        <View style={{position:'absolute',right:0, top:215,marginTop:0,marginRight:0,zIndex:1,height:50,width:50}}>
+          <Button  transparent style={{flex: 1,height:null, width:null, resizeMode: 'cover'}}
+            onPress={()=>this.resetWebViewToInitialUrl()} title="reload" >
+          <Image source={require('../../assets/images/location.png')}
+          style={{height:40, width:40, backgroundColor:'transparent'}} />
+          </Button>
+        </View>
           <Content>
 
-            <WebView
-              source={{uri: 'https://www.google.com/maps/d/embed?mid=1i0dWYZjIfyEGt1s0JrMWynfuYKkHOthW&z=15'}}
-              style={{ height: 400, marginTop: -50, marginLeft: -350 }}
-            />
-            <View style={{position:'absolute',left:0,marginTop:0,marginRight:0,zIndex:1,height:50,width:50}}>
-              <Button  style={styles.BtnMenuMap}  onPress={() => this.openDrawer()}>
-                <Icon  name='menu'/>
-              </Button>
-            </View>
+
             <Grid>
             <Row style={{  height: 20 }}>
             </Row>
@@ -89,11 +105,11 @@ export default class InformacionFleteScreen extends Component {
       style={{height:40, width:40, borderRadius:60, marginRight:130}} />
 	        </Row>
 	        <Text></Text>
-            
+
             </Grid>
             <Body>
                 <Button light onPress={() => this.props.navigation.navigate('EsperarConductor')} style={{backgroundColor: '#02a7f0'}} >
-                  <Text>Confirmar viaje</Text>
+                  <Text  style={{color:'#fff'}}>Confirmar viaje</Text>
                 </Button>
               </Body>
 	        <Text></Text>

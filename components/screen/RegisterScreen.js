@@ -11,7 +11,6 @@ import styles from '../Styles/MyStyles'
 
 export default class RegisterScreen extends Component {
   //Constructor necesario para cargar las fuentes
-
   constructor(props) {
     super(props)
     this.state={
@@ -116,7 +115,7 @@ export default class RegisterScreen extends Component {
     }
     this.setState({  repPassword:text,  })
   }
-}
+}//
   //Validación de campos
     validateSend()
     {

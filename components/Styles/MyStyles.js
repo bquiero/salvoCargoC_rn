@@ -13,6 +13,9 @@ const styles = StyleSheet.create({
         backgroundColor:'#aaa'
 
     },
+  header2: {
+    backgroundColor:'#287233'
+  },
   header: {
     backgroundColor:'#2c3e50'
   },
@@ -28,6 +31,12 @@ const styles = StyleSheet.create({
        justifyContent: 'center',
        flexWrap: 'wrap'
      },
+  containerflex3: {
+       flexDirection: 'row', 
+       alignItems: 'center',
+       justifyContent: 'space-around',
+       width:'100%'
+     },
      containerflex: {
        flexDirection: 'row', 
        alignItems: 'center',
@@ -35,6 +44,25 @@ const styles = StyleSheet.create({
      },
   BtnMenuMap: {
     backgroundColor:'#2c3e50'
-  }
+  },
+  textAreaContainer: {
+    marginTop:20,
+    marginLeft:20,
+    marginRight:20,
+    borderColor: '#fff',
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    padding: 5
+  },
+  textArea: {
+    height: 150,
+    justifyContent: "flex-start"
+  },
+  button: {
+    
+},
+buttonPress: {
+    backgroundColor: "#ffff00",
+}
   })
   export default styles;

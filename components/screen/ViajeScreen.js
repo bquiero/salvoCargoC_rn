@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Iframe from 'react-iframe';
 import {View,Image,Dimensions, WebView } from "react-native";
 import { Container, Header, Content, Form, Textarea, Item, Input, Label, Icon,Button, Left, Right, Body, Title, Drawer, Text, List, ListItem, Picker} from 'native-base';
 import styles from '../Styles/MyStyles'
@@ -29,7 +28,14 @@ export default class ViajeScreen extends Component {
 
     //state object
     state = { isShowingText: true };
+		//state object
+    state = { isShowingText: true, key: 1 };
 
+    resetWebViewToInitialUrl(){
+    this.setState({
+      key: this.state.key + 1
+    });
+  };
   render() {
 
     return (
@@ -39,17 +45,25 @@ export default class ViajeScreen extends Component {
         onClose={() => this.closeDrawer()}>
 
         <Container style={styles.container}>
-          <Content>
+				<View style={{position:'absolute',left:0,marginTop:0,marginRight:0,zIndex:1,height:50,width:50}}>
+					<Button  style={styles.BtnMenuMap}  onPress={() => this.openDrawer()}>
+						<Icon  name='menu'/>
+					</Button>
+				</View>
+				<WebView
+					key={ this.state.key }
+					source={{uri: 'https://www.google.com/maps/d/embed?mid=1AXMJVv_7Sny3XOQIgCcnHjAZRS5Y1UHT&z=17'}}
+					style={{ height: 500 ,marginTop:-45}}
+				/>
+				<View style={{position:'absolute',right:0, top:215,marginTop:0,marginRight:0,zIndex:1,height:50,width:50}}>
+					<Button  transparent style={{flex: 1,height:null, width:null, resizeMode: 'cover'}}
+						onPress={()=>this.resetWebViewToInitialUrl()} title="reload" >
+					<Image source={require('../../assets/images/location.png')}
+					style={{height:40, width:40, backgroundColor:'transparent'}} />
+					</Button>
+				</View>
 
-            <WebView
-              source={{uri: 'https://www.google.com/maps/d/embed?mid=1AXMJVv_7Sny3XOQIgCcnHjAZRS5Y1UHT&z=17'}}
-              style={{ height: 500 ,marginTop:-45}}
-            />
-            <View style={{position:'absolute',left:0,marginTop:0,marginRight:0,zIndex:1,height:50,width:50}}>
-              <Button  style={styles.BtnMenuMap}  onPress={() => this.openDrawer()}>
-                <Icon  name='menu'/>
-              </Button>
-            </View>
+          <Content>
 
             <Grid>
             <Row style={{  height: 20 }}>
@@ -75,7 +89,7 @@ export default class ViajeScreen extends Component {
 	        <Row style={styles.containerflex2}>
 	        	<Text>L: 4039; Al: 1515; An: 1735.</Text>
             </Row><Row >
-	        	
+
 	        </Row>
           <Row ></Row>
           <Row style={{marginTop : 20}}>
@@ -85,13 +99,13 @@ export default class ViajeScreen extends Component {
             <Text style={{fontSize: 15, width: "100%", textAlign: 'center'}}>Medio de Pago: Tarjeta Credito</Text>
           </Row>
 	        <Text></Text>
-            
+
             </Grid>
 
 
           </Content>
         </Container>
-      </Drawer>      
+      </Drawer>
     );
   }
 }

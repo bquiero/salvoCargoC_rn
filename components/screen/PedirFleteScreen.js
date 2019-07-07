@@ -12,6 +12,9 @@ export default class PedirFleteScreen extends Component {
     super();
     this.state = {
       show: false,
+			destino: '',
+				key: 1,
+
     };
   }
 
@@ -22,7 +25,14 @@ export default class PedirFleteScreen extends Component {
       this.setState({ show: true });
     }
   };
-	
+
+ 	sendText(text){
+			console.warn(['entre',this.state.destino,this.state.key]);
+			setTimeout(() => (
+	this.setState({	destino: text,key: this.state.key + 1})
+			), 150);
+
+	};
 
   render() {
     return (
@@ -49,12 +59,13 @@ export default class PedirFleteScreen extends Component {
 
           <Item rounded>
             	<Icon active name='search' />
-            	<Input placeholder='Destino'/>
+            	<Input placeholder='destino'>{this.state.destino}</Input>
           </Item>
 
         	<Card>
-        		<CardItem button onPress={this.ShowHideComponent}>
-        			<Icon name= "map"/>
+        		<CardItem button ref={(ref) => this.myCardItem = ref }
+						onPress={this.ShowHideComponent}>
+        			<Icon  name= "map"/>
         			<Text>Casa</Text>
         		</CardItem>
         		<CardItem button onPress={this.ShowHideComponent}>
@@ -66,7 +77,7 @@ export default class PedirFleteScreen extends Component {
         			<Text>Universidad</Text>
         		</CardItem>
         	</Card>
-        	
+
         	{this.state.show ? (
         	<Card>
         		<CardItem header>
@@ -90,7 +101,7 @@ export default class PedirFleteScreen extends Component {
         			<Text>4000                       2x1,9                 $50.000</Text>
         		</CardItem>
         	</Card>
-        	 
+
         	) : null}
 
         	</View>
