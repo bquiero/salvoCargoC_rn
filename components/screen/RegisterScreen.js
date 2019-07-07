@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 //import { View } from "react-native";
-import { View,Container, Header, Content, Form, Item, Input, Label, Button, Text, Left, Right, Body, Title, TextInput } from 'native-base';
+import { View,Container, Header, Content, Form, Item, Input, Label, Button, Text, Left, Right, Body, Title, TextInput, Thumbnail } from 'native-base';
 import {Icon as NBIcon} from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Platform, StatusBar, StyleSheet} from 'react-native';
+import {Platform, StatusBar, StyleSheet, Image} from 'react-native';
 //import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Font, AppLoading } from "expo";
+import { ImagePicker, Font, AppLoading } from "expo";
 import styles from '../Styles/MyStyles'
+
+const FilePickerManager = require('NativeModules').FilePickerManager;
 
 export default class RegisterScreen extends Component {
   //Constructor necesario para cargar las fuentes
@@ -22,6 +24,7 @@ export default class RegisterScreen extends Component {
       repPassword:'', repPasswordValidate:true, repPasswordNull:true,
       msgBox:'',
       loading: true,
+      image: null,
     }
   }
   //Para cargar las fuentes, en general no tocar
@@ -32,6 +35,7 @@ export default class RegisterScreen extends Component {
       });
       this.setState({ loading: false });
     }
+
 
 //Validación de campos
   validate(text,type)
@@ -152,7 +156,21 @@ export default class RegisterScreen extends Component {
 
     }
 
+    _pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          allowsEditing: true,
+          aspect: [4, 3],
+        });
+
+        console.log(result);
+        console.warn(result);
+        if (!result.cancelled) {
+          this.setState({ image: result.uri });
+        }
+      };
+
   render() {
+    let { image } = this.state;
     if (this.state.loading) {
           return (
               <AppLoading />
@@ -204,6 +222,8 @@ export default class RegisterScreen extends Component {
           </Row>
         </Grid>
         <Form>
+        <Text> </Text>
+          <Text>Datos del Cliente</Text>
           <Item floatingLabel
           success={this.state.nameValidate ? true : false}
           error={this.state.nameValidate ? false : true}>
@@ -247,6 +267,33 @@ export default class RegisterScreen extends Component {
             secureTextEntry={true}
              onChangeText={(text)=> this.validate(text,'repPass')}/>
           </Item>
+          <Text> </Text>
+          <Text>Datos del Automóvil</Text>
+          <Item floatingLabel
+          success={this.state.nameValidate ? true : false}
+          error={this.state.nameValidate ? false : true}>
+            <Label>Marca*</Label>
+                <Input  onChangeText={(text)=> this.validate(text,'name')}/>
+          </Item>
+          <Item floatingLabel
+          success={this.state.apellidoValidate ? true : false}
+          error={this.state.apellidoValidate ? false : true}>
+            <Label>Modelo*</Label>
+            <Input  onChangeText={(text)=> this.validate(text,'apellidos')}/>
+          </Item>
+          <Item floatingLabel
+          success={this.state.correoValidate ? true : false}
+          error={this.state.correoValidate ? false : true}>
+            <Label>Patente*</Label>
+            <Input autoCapitalize= 'none'
+              onChangeText={(text)=> this.validate(text,'correo')}/>
+          </Item>
+
+          <Text>Adjuntar una imagen</Text>
+            <Thumbnail square large source={{uri: this.state.image}} />
+          <Button light onPress={this._pickImage}  >
+            <Text>Adjuntar Imagen </Text>
+          </Button>
         </Form>
         <Text> </Text>
         <Button block onPress={() => this.validateSend() ?  this.props.navigation.navigate('Principal'):null}>
