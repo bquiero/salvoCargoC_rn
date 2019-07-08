@@ -25,7 +25,7 @@ export default class LlamarConductorScreen extends Component {
           <Text style={{height:20}}></Text>
           <Row style={styles.containerflex}>
             <Grid style={{width: '20%'}}>
-              <Text style={{fontSize: 15, width:'100%',textAlign:'center'}}>Conductor: Brian Jojas</Text>
+              <Text style={{fontSize: 15, width:'100%',textAlign:'center'}}>Cliente: Brian Jojas</Text>
             </Grid>
 
           </Row>

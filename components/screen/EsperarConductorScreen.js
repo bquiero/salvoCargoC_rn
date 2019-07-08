@@ -13,14 +13,6 @@ export default class EsperarConductorScreen extends Component {
     openDrawer() {
       this.drawer._root.open()
     };
-
-    componentDidMount(){
-    // Toggle the state every second
-        setTimeout(() => (
-          this.props.navigation.navigate('Viaje')
-        ), 20000);
-     }
-
     //state object
     state = { isShowingText: true, key: 1 };
 
@@ -44,8 +36,8 @@ export default class EsperarConductorScreen extends Component {
 				</View>
 				<WebView
 					key={ this.state.key }
-					source={{uri: 'https://www.google.com/maps/d/embed?mid=1gr_KREspblTsAsBBBSl-K6qjgTsvsQOF&z=17'}}
-					style={{ height: 500, marginTop: -50, marginLeft: -350 }}
+					source={{uri: 'https://www.google.com/maps/d/embed?mid=1LpQGIZ0gWtacSESTCno2yRODf4I4wVNo&z=14'}}
+					style={{ height: 500, marginTop: -60, marginLeft: -50 }}
 				/>
 				<View style={{position:'absolute',right:0, top:215,marginTop:0,marginRight:0,zIndex:1,height:50,width:50}}>
 					<Button  transparent style={{flex: 1,height:null, width:null, resizeMode: 'cover'}}
@@ -62,7 +54,7 @@ export default class EsperarConductorScreen extends Component {
 
           <Row style={styles.containerflex}>
             <Grid style={{width: '20%'}}>
-              <Text style={{fontSize: 15, marginLeft: 70}}>Conductor: Brian Jojas</Text>
+              <Text style={{fontSize: 15, marginLeft: 70}}>Cliente: Brian Jojas</Text>
               <Row style={styles.containerflex}>
                 <Icon name="star" style={{height: 20, width: 20,fontSize: 20, marginLeft: 70, color:'#ffff00'}}/>
                 <Icon name="star" style={{height: 20, width: 20,fontSize: 20, color:'#ffff00'}}/>
@@ -75,24 +67,22 @@ export default class EsperarConductorScreen extends Component {
       style={{height:40, width:40, borderRadius:60, marginRight:70}} />
           </Row>
           <Text></Text>
-          <Row style={styles.containerflex}>
-            <Image source={require('../../assets/images/home.jpeg')} style={{height:60, width:80, marginLeft:60}}  onPress={() => this.props.navigation.navigate('Viaje')}/>
-            <View style={{marginLeft: 20}}>
-              <Text style={{fontSize: 15, marginRight: 40}}>Vehículo: Mercedes vito</Text>
-              <Text style={{fontSize: 15, marginRight: 40}}>Matrícula: XH-66-40</Text>
-            </View>
-
-          </Row>
           <Text></Text>
           <Row >
-            <Text style={{fontSize: 15, width: "100%", textAlign: 'center'}}>Llegada del conductor: 14:32</Text>
+            <Text style={{fontSize: 15, width: "100%", textAlign: 'center'}}>Llegada: 14:32</Text>
           </Row>
             </Grid>
             <Body>
-                <Button style={{marginTop: 10}} light onPress={() => this.props.navigation.navigate('ContactarConductor')} >
-                  <Text>Contactar Conductor</Text>
+                <Button style={{marginTop: 10, backgroundColor: '#02a7f0'}} light onPress={() => this.props.navigation.navigate('ContactarConductor')} >
+                  <Text>Contactar Cliente</Text>
                 </Button>
-              </Body>
+            </Body>
+						<Text> </Text>
+						<Body>
+						<Button style={{marginTop: 10}} light onPress={() => this.props.navigation.navigate('Evaluacion')} >
+							<Text>Finalizar Viaje</Text>
+						</Button>
+						</Body>
           </Content>
         </Container>
       </Drawer>

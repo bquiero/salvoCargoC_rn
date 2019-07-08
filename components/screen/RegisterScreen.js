@@ -162,8 +162,6 @@ export default class RegisterScreen extends Component {
           aspect: [4, 3],
         });
 
-        console.log(result);
-        console.warn(result);
         if (!result.cancelled) {
           this.setState({ image: result.uri });
         }
@@ -269,24 +267,17 @@ export default class RegisterScreen extends Component {
           </Item>
           <Text> </Text>
           <Text>Datos del Automóvil</Text>
-          <Item floatingLabel
-          success={this.state.nameValidate ? true : false}
-          error={this.state.nameValidate ? false : true}>
+          <Item floatingLabel>
             <Label>Marca*</Label>
-                <Input  onChangeText={(text)=> this.validate(text,'name')}/>
+                <Input  />
           </Item>
-          <Item floatingLabel
-          success={this.state.apellidoValidate ? true : false}
-          error={this.state.apellidoValidate ? false : true}>
+          <Item floatingLabel>
             <Label>Modelo*</Label>
-            <Input  onChangeText={(text)=> this.validate(text,'apellidos')}/>
+            <Input  />
           </Item>
-          <Item floatingLabel
-          success={this.state.correoValidate ? true : false}
-          error={this.state.correoValidate ? false : true}>
+          <Item floatingLabel>
             <Label>Patente*</Label>
-            <Input autoCapitalize= 'none'
-              onChangeText={(text)=> this.validate(text,'correo')}/>
+            <Input />
           </Item>
 
           <Text>Adjuntar una imagen</Text>

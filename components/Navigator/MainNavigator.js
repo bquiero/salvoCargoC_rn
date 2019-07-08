@@ -60,7 +60,7 @@ const RegisterStack = createStackNavigator({
   }
 );
 //Navegador Principal
-const MainNavigator = createBottomTabNavigator(
+const MainNavigator = createStackNavigator(
   {
     Home: HomeScreen,
     RegisterS: RegisterStack,
@@ -69,6 +69,7 @@ const MainNavigator = createBottomTabNavigator(
   },
   {
       initialRouteName: "Home",
+      headerMode: 'none',
   }
 );
 const AppContainer = createAppContainer(MainNavigator);

@@ -43,7 +43,7 @@ export default class ContactarConductorScreen extends Component {
           </Left>
           <Body>
             <Title>Brian Jojas</Title>
-            <Subtitle>conductor</Subtitle>
+            <Subtitle>Cliente</Subtitle>
 
           </Body>
           <Right>
@@ -54,9 +54,9 @@ export default class ContactarConductorScreen extends Component {
         </Header>
         <Content>
           <Grid>
-            <Row style={{backgroundColor: '#ffffff',height: 580}}>
+            <Row style={{backgroundColor: '#ffffff',height: 420}}>
               <Item rounded style={{height: 50, marginTop: 15, marginLeft: 10 }}>
-                <Text>  Hola soy el condictor, llego en 15 minutos.  </Text>
+                <Text>  Hola soy el cliente  </Text>
               </Item>
               {this.state.show ? (
               <Right>

@@ -27,6 +27,12 @@ export default class MainPageScreen extends Component {
       key: this.state.key + 1
     });
   };
+  componentDidMount(){
+  // Toggle the state every second
+      setTimeout(() => (
+        this.props.navigation.navigate('InformacionFlete')
+      ), 10000);
+   }
   render() {
 
     return (
@@ -51,70 +57,16 @@ export default class MainPageScreen extends Component {
           </View>
             <WebView
               key={ this.state.key }
-              source={{uri: 'https://www.google.com/maps/d/embed?mid=1qrcRzQicAWR0iNhqoYoqwzLV3Xg&z=15'}}
-              style={{ height: 600, marginTop: -45, marginLeft: -330 }}
+              source={{uri: 'https://www.google.com/maps/d/embed?mid=1CQ37qspvVEH11eThcxWJmb6hWnY0pmyM&z=14'}}
+              style={{ height: 600, marginTop: -60, marginLeft: -50 }}
               ref={(ref) => this.myWebView = ref }/>
 
             <Content>
             <Grid>
             <Row style={{  height: 20 }}>
             </Row>
-
-              <Body>
-                <Button light onPress={() => this.props.navigation.navigate('PedirFlete')} >
-                  <Text>Donde llevas tu Carga?</Text>
-                </Button>
-              </Body>
-
-            <Col >
-              <List>
-              <ListItem icon
-                onPress={() => this.props.navigation.navigate('PedirFlete')} >
-                    <Left>
-                      <Button style={{ backgroundColor: "#2c3e50" }}
-                    onPress={() => this.props.navigation.navigate('PedirFlete')} >
-                        <NBIcon active name="map" />
-                      </Button>
-                    </Left>
-                    <Body>
-                      <Text>Casa</Text>
-                    </Body>
-                    <Right>
-                      <NBIcon style={{ color: "#2c3e50" }} active name="arrow-forward" />
-                    </Right>
-                </ListItem>
-                <ListItem icon
-                  onPress={() => this.props.navigation.navigate('PedirFlete')} >
-                    <Left>
-                      <Button style={{ backgroundColor: "#2c3e50" }}
-                      onPress={() => this.props.navigation.navigate('PedirFlete')} >
-                        <NBIcon active name="map" />
-                      </Button>
-                    </Left>
-                    <Body>
-                      <Text>Trabajo</Text>
-                    </Body>
-                    <Right>
-                      <NBIcon style={{ color: "#2c3e50" }} active name="arrow-forward" />
-                    </Right>
-                </ListItem>
-                <ListItem icon
-                  onPress={() => this.props.navigation.navigate('PedirFlete')} >
-                    <Left>
-                      <Button style={{ backgroundColor: "#2c3e50" }}
-                        onPress={() => this.props.navigation.navigate('PedirFlete')} >
-                        <NBIcon active name="map" />
-                      </Button>
-                    </Left>
-                    <Body>
-                      <Text>Universidad</Text>
-                    </Body>
-                    <Right>
-                      <NBIcon style={{ color: "#2c3e50" }} active name="arrow-forward" />
-                    </Right>
-                </ListItem>
-                </List>
-              </Col>
+              <Text> </Text>
+              <Text> Esperando clientes... </Text>
             </Grid>
           </Content>
         </Container>

@@ -48,8 +48,8 @@ export default class InformacionFleteScreen extends Component {
         </View>
         <WebView
             key={ this.state.key }
-          source={{uri: 'https://www.google.com/maps/d/embed?mid=1i0dWYZjIfyEGt1s0JrMWynfuYKkHOthW&z=15'}}
-          style={{ height: 400, marginTop: -50, marginLeft: -350 }}
+          source={{uri: 'https://www.google.com/maps/d/embed?mid=1LpQGIZ0gWtacSESTCno2yRODf4I4wVNo&z=14'}}
+          style={{ height: 400, marginTop: -60, marginLeft: -50 }}
         />
         <View style={{position:'absolute',right:0, top:215,marginTop:0,marginRight:0,zIndex:1,height:50,width:50}}>
           <Button  transparent style={{flex: 1,height:null, width:null, resizeMode: 'cover'}}
@@ -65,34 +65,16 @@ export default class InformacionFleteScreen extends Component {
             <Row style={{  height: 20 }}>
             </Row>
 	        <Row style={styles.containerflex2}>
-	        	<Icon name="car" style={{height: 50, width: 50,fontSize: 50}}/>
+	        	<Icon name="cash" style={{height: 50, width: 50,fontSize: 50, color:'green'}}/>
 	        	<Text style={{fontSize: 30}}>   $30.000 </Text>
 	        </Row>
 	        <Row style={styles.containerflex2}>
-	        	<Text>L: 4039; Al: 1515; An: 1735.</Text>
-            </Row><Row >
-	        	<Form style={{fontSize: 20}}>
-		            <Picker
-		              note
-		              mode="dropdown"
-		              style={{ width: 170, color: '#000', marginLeft: 10, fontSize: 20}}
-		              textStyle={{ fontSize: 20, color: '#000'}}
-		              selectedValue={this.state.selected}
-		              onValueChange={this.onValueChange.bind(this)}
-		            >
-		              <Picker.Item label="Effectivos" value="key0" style={{fontSize: 20}}/>
-		              <Picker.Item label="Tarjeta credito" value="key1" style={{fontSize: 20}}/>
-		              <Picker.Item label="Tarjeta debito" value="key2" style={{fontSize: 20}}/>
-		              <Picker.Item label="PayPal" value="key3" style={{fontSize: 20}}/>
-		            </Picker>
-		          </Form>
-	        </Row>
-            <Row >
-	        	<Text style={{fontSize: 15, marginLeft: 20}}>Llegado: 14:32</Text>
+          </Row>
+          <Row >
 	        </Row>
 	        <Row style={styles.containerflex}>
 	        	<Grid style={{width: '20%'}}>
-		        	<Text style={{fontSize: 15, marginLeft: 20}}>Conductor: Brian Jojas</Text>
+		        	<Text style={{fontSize: 15, marginLeft: 20}}>Cliente: Brian Jojas</Text>
 		        	<Row style={styles.containerflex}>
 		        		<Icon name="star" style={{height: 20, width: 20,fontSize: 20, marginLeft: 20, color:'#ffff00'}}/>
 		        		<Icon name="star" style={{height: 20, width: 20,fontSize: 20, color:'#ffff00'}}/>
@@ -115,7 +97,7 @@ export default class InformacionFleteScreen extends Component {
 	        <Text></Text>
               <Body>
                 <Button light onPress={() => this.props.navigation.navigate('MainPage')}>
-                  <Text>Cancelar viaje</Text>
+                  <Text>Rechazar</Text>
                 </Button>
               </Body>
           </Content>

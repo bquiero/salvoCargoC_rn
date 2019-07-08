@@ -20,30 +20,36 @@ const styles = StyleSheet.create({
     backgroundColor:'#2c3e50'
   },
   containerInline: {
-       flexDirection: 'row', 
+       flexDirection: 'row',
        alignSelf: 'center',
        justifyContent: 'space-around',
        flexWrap: 'wrap'
      },
   containerflex2: {
-       flexDirection: 'row', 
+       flexDirection: 'row',
        alignItems: 'center',
        justifyContent: 'center',
        flexWrap: 'wrap'
      },
   containerflex3: {
-       flexDirection: 'row', 
+       flexDirection: 'row',
        alignItems: 'center',
        justifyContent: 'space-around',
        width:'100%'
      },
      containerflex: {
-       flexDirection: 'row', 
+       flexDirection: 'row',
        alignItems: 'center',
        justifyContent: 'flex-start'
      },
   BtnMenuMap: {
     backgroundColor:'#2c3e50'
+  },
+  iconSelected: {
+    height: 40, width: 40,fontSize: 40, marginTop:20, color:'yellow',
+  },
+  iconNSelected: {
+    height: 40, width: 40,fontSize: 40, marginTop:20, color:'#FFFFFF',
   },
   textAreaContainer: {
     marginTop:20,
@@ -59,7 +65,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start"
   },
   button: {
-    
+
 },
 buttonPress: {
     backgroundColor: "#ffff00",
